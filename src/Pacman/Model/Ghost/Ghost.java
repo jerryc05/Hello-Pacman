@@ -1,12 +1,10 @@
-package Pacman;
+package Pacman.Model.Ghost;
 
-public class Ghost implements Movable {
 
-  /**
-   * Current state of the ghost: {frightened | not frightened}
-   */
-  private boolean _isFrightened;
+import Pacman.Util.Direction;
+import Pacman.Util.Movable;
 
+public abstract class Ghost implements Movable {
 
   @Override
   public boolean canMove(Direction direction) {

@@ -1,4 +1,4 @@
-package Pacman;
+package Pacman.Util;
 
 /**
  * This class is an immutable representation of some coordinate within the
@@ -45,20 +45,6 @@ public class BoardCoordinate {
   }
 
   /**
-   * Returns the row index that this BoardCoordinate represents.
-   */
-  public int getRow() {
-    return _row;
-  }
-
-  /**
-   * Returns the column index that this BoardCoordinate represents.
-   */
-  public int getCol() {
-    return _col;
-  }
-
-  /**
    * Checks that the row and index passed into this class' constructor are
    * bounded by 0 and the _ROW_MAX for the row and the _COL_MAX for the column,
    * respectively.
@@ -78,9 +64,23 @@ public class BoardCoordinate {
         "Board Coordinates must not be negative: " +
           " Given row = " + row + " col = " + col);
 
-     else if (row > _ROW_MAX || col > _COL_MAX)
+    else if (row > _ROW_MAX || col > _COL_MAX)
       throw new IllegalArgumentException(
         "Board Coordinates must not exceed board dimensions: " +
           " Given row = " + row + " col = " + col);
+  }
+
+  /**
+   * Returns the row index that this BoardCoordinate represents.
+   */
+  public int getRow() {
+    return _row;
+  }
+
+  /**
+   * Returns the column index that this BoardCoordinate represents.
+   */
+  public int getCol() {
+    return _col;
   }
 }
