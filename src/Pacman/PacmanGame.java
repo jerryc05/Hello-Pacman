@@ -9,6 +9,7 @@ import Pacman.ui.model.ghost.ChasingGhost;
 import Pacman.ui.square.DotSquare;
 import Pacman.ui.square.EnergizerSquare;
 import Pacman.ui.square.FreeSquare;
+import Pacman.ui.square.FruitSquare;
 import Pacman.ui.square.WallSquare;
 import Pacman.util.Constants;
 import Pacman.util.Coordinate;
@@ -77,6 +78,9 @@ public abstract class PacmanGame {
             break;
 
           case DOT:
+            if (Math.random() < .05)
+            _squares[row][col] = new FruitSquare(row, col);
+            else
             _squares[row][col] = new DotSquare(row, col);
             break;
 
