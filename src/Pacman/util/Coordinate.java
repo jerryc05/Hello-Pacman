@@ -38,4 +38,9 @@ public class Coordinate {
   public void setY(int y) {
     this._y = y;
   }
+
+  @Override
+  public String toString() {
+    return "(" + this._x + ", " + this._y + ")";
+  }
 }

@@ -1,6 +1,6 @@
-package Pacman.ui.square.model.ghost;
+package Pacman.ui.model.ghost;
 
-import Pacman.ui.square.model.Ghost;
+import Pacman.ui.model.Ghost;
 
 public class ChasingGhost extends Ghost {
 

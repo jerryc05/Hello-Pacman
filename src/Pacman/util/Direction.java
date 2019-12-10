@@ -30,24 +30,27 @@ public enum Direction {
   /**
    * Move the coordinate one step according to this direction
    */
-  public void moveNow(Coordinate coordinate) {
+  public Coordinate parseCoordinate(Coordinate coordinate) {
+    return parseCoordinate(coordinate.getX(), coordinate.getY());
+  }
+
+  /**
+   * Move the coordinate one step according to this direction
+   */
+  public Coordinate parseCoordinate(int x, int y) {
     switch (this) {
       case UP:
-        coordinate.setY(coordinate.getY() + 1);
-        break;
+        return new Coordinate(x - 1, y);
 
       case DOWN:
-        coordinate.setY(coordinate.getY() - 1);
-        break;
+        return new Coordinate(x + 1, y);
 
       case LEFT:
-        coordinate.setX(coordinate.getX() - 1);
-        break;
+        return new Coordinate(x, y - 1);
 
       case RIGHT:
       default:
-        coordinate.setX(coordinate.getX() + 1);
-        break;
+        return new Coordinate(x, y + 1);
     }
   }
 }
