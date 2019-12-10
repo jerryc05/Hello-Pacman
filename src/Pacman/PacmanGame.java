@@ -83,7 +83,7 @@ public abstract class PacmanGame {
 
           case DOT:
             if (Math.random() < .02)
-              _squares[row][col] = new FruitSquare(row, col);
+              _squares[row][col] = FruitSquare.getRandomFruit(row, col);
             else
               _squares[row][col] = new DotSquare(row, col);
             break;
