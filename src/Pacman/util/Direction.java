@@ -1,4 +1,4 @@
-package Pacman.Util;
+package Pacman.util;
 
 public enum Direction {
 

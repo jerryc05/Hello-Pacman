@@ -1,7 +1,4 @@
-package Pacman.Util;
-
-import Pacman.Model.Pacman;
-import Pacman.Util.Direction;
+package Pacman.util;
 
 public interface Movable {
   /**

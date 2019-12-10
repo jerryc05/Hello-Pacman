@@ -1,7 +1,7 @@
-package Pacman.UI;
+package Pacman.ui;
 
-import Pacman.Model.Ghost.Ghost;
-import Pacman.Model.Pacman;
+import Pacman.model.Ghost.Ghost;
+import Pacman.model.Pacman;
 
 public class PacmanMaze {
   /**

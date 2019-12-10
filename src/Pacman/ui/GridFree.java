@@ -1,4 +1,4 @@
-package Pacman.UI;
+package Pacman.ui;
 
 public class GridFree extends PacmanGrid {
 }

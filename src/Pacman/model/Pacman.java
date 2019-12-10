@@ -1,8 +1,8 @@
-package Pacman.Model;
+package Pacman.model;
 
-import Pacman.Util.Coordinate;
-import Pacman.Util.Direction;
-import Pacman.Util.Movable;
+import Pacman.util.Coordinate;
+import Pacman.util.Direction;
+import Pacman.util.Movable;
 
 public class Pacman implements Movable {
 

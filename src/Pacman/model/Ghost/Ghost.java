@@ -1,8 +1,8 @@
-package Pacman.Model.Ghost;
+package Pacman.model.Ghost;
 
 
-import Pacman.Util.Direction;
-import Pacman.Util.Movable;
+import Pacman.util.Direction;
+import Pacman.util.Movable;
 
 public abstract class Ghost implements Movable {
 

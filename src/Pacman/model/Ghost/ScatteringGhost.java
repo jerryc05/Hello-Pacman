@@ -1,4 +1,4 @@
-package Pacman.Model.Ghost;
+package Pacman.model.Ghost;
 
 public class ScatteringGhost extends Ghost {
 }
