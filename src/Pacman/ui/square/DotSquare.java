@@ -16,6 +16,11 @@ public class DotSquare extends Square {
   }
 
   @Override
+  public int eaten() {
+    return 10;
+  }
+
+  @Override
   public String toString() {
     return "·";
   }

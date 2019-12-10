@@ -32,6 +32,12 @@ public abstract class Ghost extends Square implements Movable {
   }
 
   @Override
+  public int eaten() {
+    // todo ghost get back to pen here
+    return 200;
+  }
+
+  @Override
   public String toString() {
     return "G";
   }

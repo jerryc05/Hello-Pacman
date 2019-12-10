@@ -19,6 +19,8 @@ public abstract class Square {
 
   public abstract boolean canRunInto();
 
+  public abstract int eaten();
+
   public Square withCoordinate(Coordinate coordinate) {
     return withCoordinate(coordinate.getX(), coordinate.getY());
   }

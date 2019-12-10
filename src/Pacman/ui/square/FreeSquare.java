@@ -16,6 +16,11 @@ public class FreeSquare extends Square {
   }
 
   @Override
+  public int eaten() {
+    return 0;
+  }
+
+  @Override
   public String toString() {
     return " ";
   }

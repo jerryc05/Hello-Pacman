@@ -16,6 +16,12 @@ public class EnergizerSquare extends Square {
   }
 
   @Override
+  public int eaten() {
+    // todo ghosts get frightened here
+    return 100;
+  }
+
+  @Override
   public String toString() {
     return "E";
   }

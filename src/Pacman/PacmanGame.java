@@ -11,6 +11,7 @@ import Pacman.ui.square.EnergizerSquare;
 import Pacman.ui.square.FreeSquare;
 import Pacman.ui.square.WallSquare;
 import Pacman.util.Constants;
+import Pacman.util.Coordinate;
 import Pacman.util.Direction;
 import cs015.fnl.PacmanSupport.SquareType;
 import cs015.fnl.PacmanSupport.SupportMap;
@@ -42,17 +43,15 @@ public abstract class PacmanGame {
    */
   private static       Pacman           _pacman;
   /**
-   * If _countdown > 0, then the game has not started; otherwise, the game has started;
+   * If _countdown > 0, then the game has not started;
+   * otherwise, the game has started;
    */
-  private static       int              _countdown = Constants.COUNT_DOWN_SECONDS;
-  /**
-   * The score of the Pacman.
-   */
-  private static       int              _score;
+  private static       int              _countdown;
 
   static {
     _ghosts = new ArrayList<>(3);
     _squares = new Square[Constants.MAZE_SIDE_LENGTH][Constants.MAZE_SIDE_LENGTH];
+    _countdown = Constants.COUNT_DOWN_SECONDS;
   }
 
   public static void start(Pane pane) {
@@ -143,7 +142,7 @@ public abstract class PacmanGame {
         for (Ghost ghost : _ghosts)
           ghost.tryMove();
 
-        printPacmanMaze();
+        debugPacmanMaze();
       }
     };
 
@@ -166,22 +165,27 @@ public abstract class PacmanGame {
     }
   }
 
-  public static Square getSquareByIndex(int x, int y) {
+  public static Square getSquareByCoordinate(Coordinate coordinate) {
+    return getSquareByCoordinate(coordinate.getX(), coordinate.getY());
+  }
+
+  public static Square getSquareByCoordinate(int x, int y) {
     return _squares[x][y];
   }
 
-  public static void setSquareByIndex(Square square) {
+  public static void setSquareByCoordinate(Square square) {
     _pane.getChildren().remove(_squares[square.getX()][square.getY()].getRectangle());
     _pane.getChildren().add(square.getRectangle());
     _squares[square.getX()][square.getY()] = square;
   }
 
-  private static void printPacmanMaze() {
+  private static void debugPacmanMaze() {
     for (Square[] row : _squares) {
       for (Square square : row)
         System.out.print(square);
       System.out.println();
     }
+    System.out.println("Score: [" + _pacman.getScore() + "]!");
     System.out.println();
   }
 }
