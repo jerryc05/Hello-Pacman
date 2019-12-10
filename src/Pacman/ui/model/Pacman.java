@@ -66,11 +66,11 @@ public class Pacman extends Square implements Movable {
     if (_currentDirection != direction)
       _currentDirection = direction;
 
-    PacmanGame.setSquareByCoordinate(new FreeSquare(getX(), getY()));
+    PacmanGame.setSquare(new FreeSquare(getX(), getY()));
     Coordinate newCoordinate = _currentDirection.parseCoordinate(getX(), getY());
     eat(newCoordinate);
     withCoordinate(newCoordinate);
-    PacmanGame.setSquareByCoordinate(this);
+    PacmanGame.setSquare(this);
   }
 
   private void eat(Coordinate coordinate) {

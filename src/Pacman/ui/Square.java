@@ -26,22 +26,22 @@ public abstract class Square {
   }
 
   public Square withCoordinate(int x, int y) {
-    _rectangle.setX(y * Constants.SQUARE_LENGTH);
-    _rectangle.setY(x * Constants.SQUARE_LENGTH);
+    _rectangle.setX(x * Constants.SQUARE_LENGTH);
+    _rectangle.setY(y * Constants.SQUARE_LENGTH);
     return this;
   }
 
   public Square withColor(Color color) {
-    _rectangle.setFill(color);
+    this._rectangle.setFill(color);
     return this;
   }
 
   public int getX() {
-    return (int) (_rectangle.getY() / Constants.SQUARE_LENGTH);
+    return (int) (this._rectangle.getX() / Constants.SQUARE_LENGTH);
   }
 
   public int getY() {
-    return (int) (_rectangle.getX() / Constants.SQUARE_LENGTH);
+    return (int) (this._rectangle.getY() / Constants.SQUARE_LENGTH);
   }
 
   public Rectangle getRectangle() {

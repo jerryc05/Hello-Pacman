@@ -22,7 +22,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
 public abstract class PacmanGame {
@@ -38,7 +38,7 @@ public abstract class PacmanGame {
   /**
    * Pane of the entire Pacman Game
    */
-  private static       Pane             _pane;
+  private static       GridPane         _pane;
   /**
    * The only Pacman in game
    */
@@ -48,6 +48,10 @@ public abstract class PacmanGame {
    * otherwise, the game has started;
    */
   private static       int              _countdown;
+  /**
+   * [Extra Credit*] Change this to make ghosts move slower than Pacman.
+   */
+  private static       boolean          _shallGhostsMove;
 
   static {
     _ghosts = new ArrayList<>(3);
@@ -55,7 +59,7 @@ public abstract class PacmanGame {
     _countdown = Constants.COUNT_DOWN_SECONDS;
   }
 
-  public static void start(Pane pane) {
+  public static void start(GridPane pane) {
     _pane = pane;
     parseSupportMap();
     initKeyEvent();
@@ -65,9 +69,9 @@ public abstract class PacmanGame {
   private static void parseSupportMap() {
     SquareType[][] supportMap = SupportMap.getSupportMap();
 
-    for (int row = 0; row < supportMap.length; ++row) {
-      for (int col = 0; col < supportMap[row].length; ++col) {
-        switch (supportMap[row][col]) {
+    for (int col = 0; col < Constants.MAZE_SIDE_LENGTH; ++col) {
+      for (int row = 0; row < Constants.MAZE_SIDE_LENGTH; ++row){
+        switch (supportMap[col][row]) {
 
           case WALL:
             _squares[row][col] = new WallSquare(row, col);
@@ -78,10 +82,10 @@ public abstract class PacmanGame {
             break;
 
           case DOT:
-            if (Math.random() < .05)
-            _squares[row][col] = new FruitSquare(row, col);
+            if (Math.random() < .02)
+              _squares[row][col] = new FruitSquare(row, col);
             else
-            _squares[row][col] = new DotSquare(row, col);
+              _squares[row][col] = new DotSquare(row, col);
             break;
 
           case ENERGIZER:
@@ -100,12 +104,10 @@ public abstract class PacmanGame {
           default:
             throw new IllegalStateException("Unknown Square Type!");
         }
-
-        System.out.print(_squares[row][col]);
-        _pane.getChildren().add(_squares[row][col].getRectangle());
+        _pane.add(_squares[row][col].getRectangle(), row, col);
       }
-      System.out.println();
     }
+    debugPacmanMaze();
   }
 
   private static void initKeyEvent() {
@@ -143,14 +145,16 @@ public abstract class PacmanGame {
         }
 
         _pacman.tryMove();
-        for (Ghost ghost : _ghosts)
-          ghost.tryMove();
+        if (_shallGhostsMove)
+          for (Ghost ghost : _ghosts)
+            ghost.tryMove();
+        _shallGhostsMove = !_shallGhostsMove;
 
         debugPacmanMaze();
       }
     };
 
-    KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), eventEventHandler);
+    KeyFrame keyFrame = new KeyFrame(Duration.seconds(.5), eventEventHandler);
     Timeline timeline = new Timeline(keyFrame);
     timeline.setCycleCount(Animation.INDEFINITE);
     timeline.play();
@@ -177,16 +181,16 @@ public abstract class PacmanGame {
     return _squares[x][y];
   }
 
-  public static void setSquareByCoordinate(Square square) {
+  public static void setSquare(Square square) {
     _pane.getChildren().remove(_squares[square.getX()][square.getY()].getRectangle());
-    _pane.getChildren().add(square.getRectangle());
+    _pane.add(square.getRectangle(), square.getX(), square.getY());
     _squares[square.getX()][square.getY()] = square;
   }
 
   private static void debugPacmanMaze() {
-    for (Square[] row : _squares) {
-      for (Square square : row)
-        System.out.print(square);
+    for (int col = 0; col < Constants.MAZE_SIDE_LENGTH; ++col) {
+      for (int row = 0; row < Constants.MAZE_SIDE_LENGTH; ++row)
+        System.out.print(_squares[row][col]);
       System.out.println();
     }
     System.out.println("Score: [" + _pacman.getScore() + "]!");

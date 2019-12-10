@@ -40,17 +40,17 @@ public enum Direction {
   public Coordinate parseCoordinate(int x, int y) {
     switch (this) {
       case UP:
-        return new Coordinate(x - 1, y);
+        return new Coordinate(x, y - 1);
 
       case DOWN:
-        return new Coordinate(x + 1, y);
+        return new Coordinate(x, y + 1);
 
       case LEFT:
-        return new Coordinate(x, y - 1);
+        return new Coordinate(x - 1, y);
 
       case RIGHT:
       default:
-        return new Coordinate(x, y + 1);
+        return new Coordinate(x + 1, y);
     }
   }
 }
